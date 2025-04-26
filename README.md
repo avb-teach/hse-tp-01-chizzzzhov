@@ -9,6 +9,9 @@
 `collect_files.sh /path/to/input_dir /path/to/output_dir`
 
 Скрипт должен быть в корне репозитория
+djdjfjkhd
+dfjdkfkjd
+
 
 Пример:
 
