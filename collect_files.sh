@@ -51,10 +51,10 @@ while IFS= read -r -d '' file; do
     target_rel="$(basename "$rel")"
   else
     IFS='/' read -r -a parts <<< "$rel"
-    total="${#parts[@]}"
-    if (( total > MAX_DEPTH )); then
-      start=$(( total - MAX_DEPTH ))
-      target_rel="$(IFS=/; echo "${parts[*]:$start}")"
+    dir_count=$(( ${#parts[@]} - 1 ))
+    if (( dir_count > MAX_DEPTH )); then
+      target_dirs="$(IFS=/; echo "${parts[*]:0:MAX_DEPTH}")"
+      target_rel="$target_dirs/${parts[-1]}"
     else
       target_rel="$rel"
     fi
@@ -64,3 +64,4 @@ while IFS= read -r -d '' file; do
   target_path="$(make_unique "$target_path")"
   cp "$file" "$target_path"
 done
+
